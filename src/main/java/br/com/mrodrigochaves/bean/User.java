@@ -1,4 +1,4 @@
-package br.com.mrodrigochaves;
+package br.com.mrodrigochaves.bean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.posts = new ArrayList<>();
+        this.posts = new ArrayList<Post>();
     }
 
     public String getUsername() {

@@ -1,4 +1,4 @@
-package br.com.mrodrigochaves;
+package br.com.mrodrigochaves.bean;
 public class Comment {
     private User user;
     private String content;

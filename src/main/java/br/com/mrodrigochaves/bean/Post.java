@@ -1,4 +1,4 @@
-package br.com.mrodrigochaves;
+package br.com.mrodrigochaves.bean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class Post {
         this.title = title;
         this.content = content;
         this.author = author;
-        this.comments = new ArrayList<>();
+        this.comments = new ArrayList<Comment>();
     }
 
     public String getTitle() {

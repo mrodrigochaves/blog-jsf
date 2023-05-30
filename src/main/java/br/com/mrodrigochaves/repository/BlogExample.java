@@ -1,8 +1,8 @@
 package br.com.mrodrigochaves.repository;
 
-import br.com.mrodrigochaves.Comment;
-import br.com.mrodrigochaves.Post;
-import br.com.mrodrigochaves.User;
+import br.com.mrodrigochaves.bean.Comment;
+import br.com.mrodrigochaves.bean.Post;
+import br.com.mrodrigochaves.bean.User;
 
 public class BlogExample {
     public static void main(String[] args) {
