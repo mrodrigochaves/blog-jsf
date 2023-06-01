@@ -1,9 +1,12 @@
-package br.com.mrodrigochaves.bean.BlogBean;
+package br.com.mrodrigochaves.bean;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+
+import br.com.mrodrigochaves.dao.BlogDao;
+
 import java.util.List;
 
 @ManagedBean
@@ -17,8 +20,8 @@ public class BlogBean {
 
     @PostConstruct
     public void init() {
-        users = blogDao.getUsers();
-        posts = blogDao.getPosts();
+        users = blogDao.getUsers(null);
+        posts = blogDao.getPosts(null);
     }
 
 

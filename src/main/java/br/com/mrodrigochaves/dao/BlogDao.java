@@ -23,7 +23,7 @@ public class BlogDao {
         return conn;
     }
 
-    public void createUser(User user) {
+    public void createUser(User user, Connection conn) {
         String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
 
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -35,7 +35,7 @@ public class BlogDao {
         }
     }
 
-    public List<User> getUsers() {
+    public List<User> getUsers(Connection conn) {
         List<User> users = new ArrayList<>();
         String sql = "SELECT * FROM users";
 
@@ -54,7 +54,7 @@ public class BlogDao {
         return users;
     }
 
-    public void createPost(Post post) {
+    public void createPost(Post post, Connection conn) {
         String sql = "INSERT INTO posts (title, content, author_username) VALUES (?, ?, ?)";
 
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -67,7 +67,7 @@ public class BlogDao {
         }
     }
 
-    public List<Post> getPosts() {
+    public List<Post> getPosts(Connection conn) {
         List<Post> posts = new ArrayList<>();
         String sql = "SELECT * FROM posts";
 
@@ -78,7 +78,7 @@ public class BlogDao {
                 String content = resultSet.getString("content");
                 String authorUsername = resultSet.getString("author_username");
 
-                User author = findUserByUsername(authorUsername);
+                User author = findUserByUsername(authorUsername, conn);
                 Post post = new Post(title, content, author);
                 posts.add(post);
             }
@@ -89,7 +89,7 @@ public class BlogDao {
         return posts;
     }
 
-    public void createComment(Comment comment) {
+    public void createComment(Comment comment, Connection conn) {
         String sql = "INSERT INTO comments (content, user_username, post_title) VALUES (?, ?, ?)";
 
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -102,7 +102,7 @@ public class BlogDao {
         }
     }
 
-    public List<Comment> getComments() {
+    public List<Comment> getComments(Connection conn) {
         List<Comment> comments = new ArrayList<>();
         String sql = "SELECT * FROM comments";
 
@@ -113,8 +113,8 @@ public class BlogDao {
                 String userUsername = resultSet.getString("user_username");
                 String postTitle = resultSet.getString("post_title");
 
-                User user = findUserByUsername(userUsername);
-                Post post = findPostByTitle(postTitle);
+                User user = findUserByUsername(userUsername, conn);
+                Post post = findPostByTitle(postTitle, conn);
                 Comment comment = new Comment(user, content, post);
                 comments.add(comment);
             }
@@ -126,7 +126,7 @@ public class BlogDao {
     }
 
    
-    private User findUserByUsername(String username) {
+    private User findUserByUsername(String username, Connection conn) {
         User user = null;
         String sql = "SELECT * FROM users WHERE username = ?";
 
@@ -145,7 +145,7 @@ public class BlogDao {
         return user;
     }
 
-    private Post findPostByTitle(String title) {
+    private Post findPostByTitle(String title, Connection conn) {
         Post post = null;
         String sql = "SELECT * FROM posts WHERE title = ?";
 
@@ -156,7 +156,7 @@ public class BlogDao {
             if (resultSet.next()) {
                 String content = resultSet.getString("content");
                 String authorUsername = resultSet.getString("author_username");
-                User author = findUserByUsername(authorUsername);
+                User author = findUserByUsername(authorUsername, conn);
                 post = new Post(title, content, author);
             }
         } catch (SQLException e) {

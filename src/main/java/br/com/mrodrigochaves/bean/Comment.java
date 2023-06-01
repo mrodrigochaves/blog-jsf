@@ -8,11 +8,20 @@ public class Comment {
         this.content = content;
     }
 
-    public User getUser() {
+    public Comment(User user2, String content2, Post post) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public User getUser() {
         return user;
     }
 
     public String getContent() {
         return content;
     }
+
+	public Post getPost() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
