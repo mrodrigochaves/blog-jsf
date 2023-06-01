@@ -16,7 +16,7 @@ public class BlogDao {
 
             try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_blog", "admin", "abcd1234");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/blog_db", "admin", "abcd1234");
         } catch (Exception e) {
             System.out.println(e);
         }
