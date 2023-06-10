@@ -8,4 +8,4 @@ Projeto de provisionamento de blog em Java com Maven e JSF
 ### Objetivo
 
 
-### Funcionabilidades
+
